@@ -42,7 +42,7 @@ module Wisper
             block.call
           end
 
-          event_recorder.broadcast?(@event, @args)
+          event_recorder.broadcast?(@event, *@args)
         end
 
         def failure_message
