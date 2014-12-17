@@ -1,8 +1,6 @@
 # Wisper::Rspec
 
-WIP - This is being extracted from Wisper.
-
-Rspec matcher and stubbing for Wisper
+Rspec matcher and stubbing for [Wisper](https://github.com/krisleech/wisper).
 
 [![Gem Version](https://badge.fury.io/rb/wisper-rspec.png)](http://badge.fury.io/rb/wisper-rspec)
 [![Build Status](https://travis-ci.org/krisleech/wisper-rspec.png?branch=master)](https://travis-ci.org/krisleech/wisper-rspec)
