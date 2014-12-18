@@ -26,14 +26,26 @@ end
 ```
 
 In your specs:
-
 ```ruby
 expect { publisher.execute }.to broadcast(:an_event)
 ```
+This will match both `broadcast(:an_event)` and `broadcast(:an_event, :arg_1)`.
+
+
+```ruby
+# with optional arguments
+expect { publisher.execute }.to broadcast(:another_event, :arg_1, :arg_2)
+```
+
+With event arguments, it matches only if the event is broadcast with those arguments. This assertion matches `broadcast(:another_event, :arg_1, :arg_2)` but not `broadcast(:another_event)`.
+
+
+
+
 
 ### Using message expections
 
-If you need to assert on the arguments broadcast you can subscribe a double 
+If you need to assert on the listener receiving broadcast arguments you can subscribe a double
 with a [message expection](https://github.com/rspec/rspec-mocks#message-expectations)
 and then use any of the [argument matchers](https://github.com/rspec/rspec-mocks#argument-matchers).
 
@@ -57,11 +69,11 @@ Given this piece of code:
 class MyController
   def create
     publisher = MyPublisher.new
-    
+
     publisher.on(:some_event) do |variable|
       return "Hello with #{variable}!"
     end
-    
+
     publisher.execute
   end
 end
@@ -86,7 +98,7 @@ describe MyController do
 end
 ```
 
-This is useful when testing Rails controllers in isolation from the business logic.  
+This is useful when testing Rails controllers in isolation from the business logic.
 
 You can use any number of args to pass to the event:
 
