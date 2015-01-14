@@ -1,4 +1,4 @@
-require 'wisper/rspec/matchers'
+require File.expand_path('../../../../lib/wisper/rspec/matchers', __FILE__)
 
 RSpec::configure do |config|
   config.include(Wisper::RSpec::BroadcastMatcher)
