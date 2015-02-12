@@ -1,4 +1,4 @@
-require File.expand_path('../../../../lib/wisper/rspec/matchers', __FILE__)
+require_relative '../../../lib/wisper/rspec/matchers'
 
 RSpec::configure do |config|
   config.include(Wisper::RSpec::BroadcastMatcher)
@@ -6,7 +6,7 @@ end
 
 describe 'broadcast matcher' do
   let(:publisher_class) { Class.new { include Wisper::Publisher } }
-  let(:publisher) { publisher_class.new }
+  let(:publisher)       { publisher_class.new }
 
   it 'passes when publisher broadcasts inside block' do
     expect { publisher.send(:broadcast, :foobar) }.to broadcast(:foobar)

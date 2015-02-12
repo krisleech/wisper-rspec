@@ -3,6 +3,8 @@ require 'rspec/expectations'
 module Wisper
   module RSpec
     class EventRecorder
+      attr_reader :broadcast_events
+
       def initialize
         @broadcast_events = []
       end
@@ -36,17 +38,24 @@ module Wisper
         end
 
         def matches?(block)
-          event_recorder = EventRecorder.new
+          @event_recorder = EventRecorder.new
 
-          Wisper.subscribe(event_recorder) do
+          Wisper.subscribe(@event_recorder) do
             block.call
           end
 
-          event_recorder.broadcast?(@event, *@args)
+          @event_recorder.broadcast?(@event, *@args)
         end
 
         def failure_message
           msg = "expected publisher to broadcast #{@event} event"
+          if @args.size == 0
+            if @event_recorder.broadcast_events.any?
+              msg += " (not included in #{@event_recorder.broadcast_events.map(&:first).join(', ')})"
+            else
+              msg += " (no events broadcast)"
+            end
+          end
           msg += " with args: #{@args.inspect}" if @args.size > 0
           msg
         end
