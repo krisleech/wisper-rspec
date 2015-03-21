@@ -72,4 +72,15 @@ module Wisper
       end
     end
   end
+
+  # Prior to being extracted from Wisper the matcher was namespaced as Rspec,
+  # it is now RSpec. This will raise a helpful message for those upgrading to
+  # Wisper 2.0
+  module Rspec
+    module BroadcastMatcher
+      def self.included(base)
+        raise 'Please include Wisper::RSpec::BroadcastMatcher instead of Wisper::Rspec::BroadcastMatcher (notice the capitalization of RSpec)'
+      end
+    end
+  end
 end
