@@ -49,14 +49,8 @@ module Wisper
 
         def failure_message
           msg = "expected publisher to broadcast #{@event} event"
-          if @args.size == 0
-            if @event_recorder.broadcast_events.any?
-              msg += " (not included in #{@event_recorder.broadcast_events.map(&:first).join(', ')})"
-            else
-              msg += " (no events broadcast)"
-            end
-          end
           msg += " with args: #{@args.inspect}" if @args.size > 0
+          msg << broadcast_events_list
           msg
         end
 
@@ -64,6 +58,14 @@ module Wisper
           msg = "expected publisher not to broadcast #{@event} event"
           msg += " with args: #{@args.inspect}" if @args.size > 0
           msg
+        end
+
+        def broadcast_events_list
+          if @event_recorder.broadcast_events.any?
+            " (actual events broadcast: #{@event_recorder.broadcast_events.map(&:first).join(', ')})"
+          else
+            " (no events broadcast)"
+          end
         end
       end
 
