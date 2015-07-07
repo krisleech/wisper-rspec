@@ -49,7 +49,7 @@ describe Wisper::RSpec::BroadcastMatcher::Matcher do
     let(:block) do
       Proc.new do
         broadcaster.broadcast('event1')
-        broadcaster.broadcast('event2')
+        broadcaster.send(:broadcast, 'event2', 12345, :foo)
       end
     end
 
@@ -63,7 +63,9 @@ describe Wisper::RSpec::BroadcastMatcher::Matcher do
       before { matcher.matches?(block) }
 
       it 'has descriptive failure message' do
-        expect(matcher.failure_message).to eq "expected publisher to broadcast it_happened event (actual events broadcast: event1, event2)"
+        message = "expected publisher to broadcast it_happened event "\
+          "(actual events broadcast: event1, event2(12345, foo))"
+        expect(matcher.failure_message).to eq(message)
       end
     end
   end
