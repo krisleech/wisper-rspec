@@ -39,9 +39,12 @@ expect { publisher.execute }.to broadcast(:another_event, :arg_1, :arg_2)
 
 With event arguments, it matches only if the event is broadcast with those arguments. This assertion matches `broadcast(:another_event, :arg_1, :arg_2)` but not `broadcast(:another_event)`.
 
+```ruby
+# with arguments matcher
+expect { publisher.execute }.to broadcast(:event, hash_including(a: 2))
+```
 
-
-
+Rspec values matcher can be used to match arguments. This assertion matches `broadcast(:another_event, a: 2, b: 1)` but not `broadcast(:another_event, a: 3)` 
 
 ### Using message expections
 

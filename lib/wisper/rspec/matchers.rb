@@ -1,8 +1,10 @@
 require 'rspec/expectations'
+require 'rspec/mocks/argument_list_matcher'
 
 module Wisper
   module RSpec
     class EventRecorder
+      include ::RSpec::Mocks::ArgumentMatchers
       attr_reader :broadcast_events
 
       def initialize
@@ -18,10 +20,10 @@ module Wisper
       end
 
       def broadcast?(event_name, *args)
-        if args.size > 0
-          @broadcast_events.include?([event_name.to_s, *args])
-        else
-          @broadcast_events.map(&:first).include?(event_name.to_s)
+        expected_args = args.size > 0 ? args : [any_args]
+        @broadcast_events.any? do |event_params|
+          matcher = ::RSpec::Mocks::ArgumentListMatcher.new(event_name.to_s, *expected_args)
+          matcher.args_match?(*event_params)
         end
       end
     end
