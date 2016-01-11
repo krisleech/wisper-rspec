@@ -1,5 +1,7 @@
 language: ruby
-script: rspec spec
+script:
+  - gem update bundler
+  - rspec spec
 rvm:
   - '1.9.3'
   - '2.1.2'
