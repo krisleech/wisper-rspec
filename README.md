@@ -44,7 +44,21 @@ With event arguments, it matches only if the event is broadcast with those argum
 expect { publisher.execute }.to broadcast(:event, hash_including(a: 2))
 ```
 
-Rspec values matcher can be used to match arguments. This assertion matches `broadcast(:another_event, a: 2, b: 1)` but not `broadcast(:another_event, a: 3)` 
+Rspec values matcher can be used to match arguments. This assertion matches `broadcast(:another_event, a: 2, b: 1)` but not `broadcast(:another_event, a: 3)`
+ 
+Matchers can be composed using [compound rspec matchers](http://www.rubydoc.info/gems/rspec-expectations/RSpec/Matchers/Composable):
+
+```ruby
+expect {
+  publisher.execute(123)
+  publisher.execute(234)
+}.to broadcast(:event, 123).and broadcast(:event, 234)
+
+expect {
+  publisher.execute(123)
+  publisher.execute(234)
+}.to broadcast(:event, 123).or broadcast(:event, 234)
+```
 
 ### Using message expections
 
