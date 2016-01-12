@@ -1,4 +1,6 @@
 language: ruby
+before_install:
+  - gem install bundler
 script: rspec spec
 rvm:
   - '1.9.3'
