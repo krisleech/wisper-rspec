@@ -30,6 +30,8 @@ module Wisper
 
     module BroadcastMatcher
       class Matcher
+        include ::RSpec::Matchers::Composable
+
         def initialize(event, *args)
           @event = event
           @args = args

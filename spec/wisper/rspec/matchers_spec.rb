@@ -34,6 +34,21 @@ describe 'broadcast matcher' do
     end
   end
 
+  context 'with compound assertions' do
+    it 'passes when both values are expected' do
+      expect {
+        publisher.send(:broadcast, :fizzbuzz, 12345)
+        publisher.send(:broadcast, :fizzbuzz, 54321)
+      }.to broadcast(:fizzbuzz, 12345).and broadcast(:fizzbuzz, 54321)
+    end
+
+    it 'passes when either value is expected' do
+      expect {
+        publisher.send(:broadcast, :fizzbuzz, 54321)
+      }.to broadcast(:fizzbuzz, 12345).or broadcast(:fizzbuzz, 54321)
+    end
+  end
+
   it 'passes with not_to when publisher does not broadcast inside block' do
     expect { publisher }.not_to broadcast(:foobar)
   end
