@@ -58,10 +58,26 @@ module Wisper
           msg
         end
 
+        def expected
+          [] << @args
+        end
+
+        def actual
+          broadcast_events_args
+        end
+
+        def diffable?
+          true
+        end
+
         def failure_message_when_negated
           msg = "expected publisher not to broadcast #{@event} event"
           msg += " with args: #{@args.inspect}" if @args.size > 0
           msg
+        end
+
+        def broadcast_events_args
+          @event_recorder.broadcast_events.map {|event| event.size == 1 ? [] : event[1..-1] }
         end
 
         def broadcast_events_list
