@@ -45,7 +45,7 @@ expect { publisher.execute }.to broadcast(:event, hash_including(a: 2))
 ```
 
 Rspec values matcher can be used to match arguments. This assertion matches `broadcast(:another_event, a: 2, b: 1)` but not `broadcast(:another_event, a: 3)`
- 
+
 Matchers can be composed using [compound rspec matchers](http://www.rubydoc.info/gems/rspec-expectations/RSpec/Matchers/Composable):
 
 ```ruby
@@ -59,6 +59,8 @@ expect {
   publisher.execute(234)
 }.to broadcast(:event, 123).or broadcast(:event, 234)
 ```
+
+Note that the `broadcast` method is aliased as `publish`, similar to the *Wisper* library itself.
 
 ### Using message expections
 
