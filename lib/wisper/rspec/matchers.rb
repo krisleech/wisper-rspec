@@ -100,6 +100,8 @@ module Wisper
       def broadcast(event, *args)
         Matcher.new(event, *args)
       end
+
+      alias_method :publish, :broadcast
     end
   end
 
