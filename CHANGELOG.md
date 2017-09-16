@@ -1,3 +1,7 @@
+Unreleased
+
+* fixes: undefined method `id when using LoggerBoradcaster [#22]
+
 1.0.0 (16/Sept/2017)
 
 Authors: Adis Osmonov (adisos)

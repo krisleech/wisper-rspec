@@ -15,6 +15,10 @@ module Wisper
         true
       end
 
+      def respond_to_missing?(*)
+        true
+      end
+
       def method_missing(method_name, *args, &block)
         @broadcast_events << [method_name.to_s, *args]
       end
