@@ -1,3 +1,5 @@
+1.0.0 (16/Sept/2017)
+
 Authors: Adis Osmonov (adisos)
 
 * Matchers shows diff when expectation fails #18
