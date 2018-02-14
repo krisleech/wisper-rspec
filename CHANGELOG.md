@@ -1,5 +1,9 @@
 Unreleased
 
+1.0.1 (24/Feb/2018)
+
+Authors: Kris Leech, Konstantin Rudy (k-ruby)
+
 * fixes: undefined method `id when using LoggerBoradcaster [#22]
 
 1.0.0 (16/Sept/2017)
