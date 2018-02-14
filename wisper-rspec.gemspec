@@ -18,4 +18,12 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  signing_key = File.expand_path(ENV['HOME'].to_s + '/.ssh/gem-private_key.pem')
+
+  if File.exist?(signing_key)
+    spec.signing_key = signing_key
+    spec.cert_chain  = ['gem-public_cert.pem']
+  else
+    puts "Warning: NOT CREATING A SIGNED GEM. Could not find signing key: #{signing_key}"
+  end
 end
