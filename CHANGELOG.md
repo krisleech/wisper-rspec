@@ -4,7 +4,7 @@ Unreleased
 
 Authors: Kris Leech, Konstantin Rudy (k-ruby)
 
-* fixes: undefined method `id when using LoggerBoradcaster [#22]
+* fixes: undefined method `id` when using LoggerBroadcaster [#22]
 
 1.0.0 (16/Sept/2017)
 
