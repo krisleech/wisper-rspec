@@ -62,10 +62,10 @@ expect {
 
 Note that the `broadcast` method is aliased as `publish`, similar to the *Wisper* library itself.
 
-### Using message expections
+### Using message expectations
 
 If you need to assert on the listener receiving broadcast arguments you can subscribe a double
-with a [message expection](https://github.com/rspec/rspec-mocks#message-expectations)
+with a [message expectation](https://github.com/rspec/rspec-mocks#message-expectations)
 and then use any of the [argument matchers](https://github.com/rspec/rspec-mocks#argument-matchers).
 
 ```ruby
