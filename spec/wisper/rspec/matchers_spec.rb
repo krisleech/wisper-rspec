@@ -4,6 +4,15 @@ RSpec::configure do |config|
   config.include(Wisper::RSpec::BroadcastMatcher)
 end
 
+describe 'not_broadcast matcher' do
+  let(:publisher_class) { Class.new { include Wisper::Publisher } }
+  let(:publisher)       { publisher_class.new }
+
+  it 'can be chained with broadcast' do
+    expect { publisher.send(:broadcast, :foobar) }.to not_broadcast(:barfoo).and broadcast(:foobar)
+  end
+end
+
 describe 'broadcast matcher' do
   let(:publisher_class) { Class.new { include Wisper::Publisher } }
   let(:publisher)       { publisher_class.new }

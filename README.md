@@ -62,6 +62,16 @@ expect {
 
 Note that the `broadcast` method is aliased as `publish`, similar to the *Wisper* library itself.
 
+### Not broadcast matcher
+
+If you want to assert a broadcast was not made you can use `not_broadcast` which is especially useful when chaining expectations.
+
+```ruby
+expect {
+  publisher.execute(123)
+}.to not_broadcast(:event, 99).and broadcast(:event, 123)
+```
+
 ### Using message expectations
 
 If you need to assert on the listener receiving broadcast arguments you can subscribe a double
