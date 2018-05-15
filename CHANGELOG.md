@@ -1,5 +1,7 @@
 Unreleased
 
+1.1.0 (15/May/2018)
+
 Authors: Nikolai (nikolai-b), David Kennedy (TheTeaNerd)
 
 * Add not_broadcast matcher (https://github.com/krisleech/wisper-rspec/pull/30)
