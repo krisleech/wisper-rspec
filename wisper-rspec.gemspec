@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/krisleech/wisper-rspec"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0")
+  spec.files         = Dir.glob("{bin,lib}/**/*") + %w[LICENSE.txt README.md CHANGELOG.md]
   spec.require_paths = ["lib"]
 
   signing_key = File.expand_path(ENV['HOME'].to_s + '/.ssh/gem-private_key.pem')
