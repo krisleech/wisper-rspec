@@ -55,6 +55,12 @@ module Wisper
           @event_recorder.broadcast?(@event, *@args)
         end
 
+        def description
+          msg = "broadcast #{@event} event"
+          msg += " with args: #{@args.inspect}" if @args.size > 0
+          msg
+        end
+
         def failure_message
           msg = "expected publisher to broadcast #{@event} event"
           msg += " with args: #{@args.inspect}" if @args.size > 0

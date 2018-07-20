@@ -13,6 +13,30 @@ describe Wisper::RSpec::BroadcastMatcher::Matcher do
     end.new
   end
 
+  describe '#description' do
+    it 'has descriptive message' do
+      expect(matcher.description).to eq "broadcast #{event_name} event"
+    end
+  end
+
+  describe '#failure_message_when_negated' do
+    subject(:message) { matcher.failure_message_when_negated }
+
+    context 'when with args' do
+      let(:matcher) { described_class.new(event_name, 1) }
+
+      it 'has descriptive message' do
+        expect(message).to eq "expected publisher not to broadcast #{event_name} event with args: [1]"
+      end
+    end
+
+    context 'when without args' do
+      it 'has descriptive message' do
+        expect(message).to eq "expected publisher not to broadcast #{event_name} event"
+      end
+    end
+  end
+
   context 'matching event broadcast' do
     let(:block) do
       Proc.new do
