@@ -1,5 +1,7 @@
 Unreleased
 
+* Fixed the error of the missing matcher description (https://github.com/krisleech/wisper-rspec/pull/32)
+
 1.1.0 (15/May/2018)
 
 Authors: Nikolai (nikolai-b), David Kennedy (TheTeaNerd)
