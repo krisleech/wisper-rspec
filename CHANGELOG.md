@@ -1,6 +1,7 @@
 Unreleased
 
 * Fixed the error of the missing matcher description (https://github.com/krisleech/wisper-rspec/pull/32)
+* Add not_publish matcher (https://github.com/krisleech/wisper-rspec/pull/35)
 
 1.1.0 (15/May/2018)
 

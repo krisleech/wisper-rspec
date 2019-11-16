@@ -128,3 +128,4 @@ module Wisper
 end
 
 ::RSpec::Matchers.define_negated_matcher :not_broadcast, :broadcast
+::RSpec::Matchers.define_negated_matcher :not_publish, :publish

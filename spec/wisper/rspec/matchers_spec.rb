@@ -13,6 +13,15 @@ describe 'not_broadcast matcher' do
   end
 end
 
+describe 'not_publish matcher' do
+  let(:publisher_class) { Class.new { include Wisper::Publisher } }
+  let(:publisher)       { publisher_class.new }
+
+  it 'can be chained with publish' do
+    expect { publisher.send(:publish, :foobar) }.to not_publish(:barfoo).and publish(:foobar)
+  end
+end
+
 describe 'broadcast matcher' do
   let(:publisher_class) { Class.new { include Wisper::Publisher } }
   let(:publisher)       { publisher_class.new }
